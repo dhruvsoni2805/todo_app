@@ -26,29 +26,25 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: tdBGColor,
       appBar: _buildAppBar(),
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: Column(
-              children: [
-                //search box containter added by the widget functioon call
-                searchBox(),
-                //Title Container For All ToDos
-                toDoTitleView(),
-                //List View For the all the ToDos Items.
-                // listViewForToDos(),
-                Expanded(
-                  flex: 1,
-                  child: listViewForToDos(),
-                ),
-              ],
+      body: Container(
+        color: Colors.white,
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        child: Column(
+          children: [
+            //search box containter added by the widget functioon call
+            searchBox(),
+            //Title Container For All ToDos
+            toDoTitleView(),
+            //List View For the all the ToDos Items.
+            // listViewForToDos(),
+            Expanded(
+              flex: 01,
+              child: listViewForToDos(),
             ),
-          ),
-          //Bottom new ToDo item add layout
-          newToDoItem(),
-        ],
+            newToDoItem(),
+          ],
+        ),
       ),
       //creating the add the new ToDo Item at the bottom screen.
     );
@@ -112,7 +108,10 @@ class _HomeState extends State<Home> {
   }
 
   Widget newToDoItem() {
-    return Align(
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      // color: Colors.white,
+      // color: Colors.red,
       alignment: Alignment.bottomCenter,
       child: Row(
         children: [
@@ -140,7 +139,7 @@ class _HomeState extends State<Home> {
                 ],
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: TextField(
+              child: TextFormField(
                 controller: _todoController,
                 decoration: const InputDecoration(
                   hintText: "Add a new ToDo item",
@@ -226,7 +225,25 @@ class _HomeState extends State<Home> {
     return AppBar(
       elevation: 0,
       backgroundColor: tdBGColor,
-      title: Row(
+      leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.menu),
+          color: tdBlack), // use for left side only
+      // title: Text(""), Give app title here
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: Container(
+            height: 35,
+            width: 35,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset('assets/images/avatar.jpeg'),
+            ),
+          ),
+        )
+      ],
+      /*  title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Icon(
@@ -243,7 +260,7 @@ class _HomeState extends State<Home> {
             ),
           )
         ],
-      ),
+      ),*/
     );
   }
 }
